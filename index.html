@@ -24,12 +24,13 @@
             background: #222;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             margin: 50px auto;
-            width: 300px;
+            width: 90%; /* Responsive pour les écrans mobiles */
+            max-width: 400px; /* Limite la largeur */
         }
 
         input {
             width: 100%;
-            font-size: 20px;
+            font-size: 30px; /* Plus grand pour une meilleure lisibilité sur mobile */
             text-align: right;
             margin-bottom: 20px;
             background: #333;
@@ -37,12 +38,14 @@
             border: 2px solid #555;
             border-radius: 20px;
             outline: none;
-            height: 40px;
+            height: 60px; /* Plus grand pour l'usage tactile */
+            cursor: text; /* Permet à l'utilisateur de savoir qu'il peut taper */
         }
 
         input:focus {
             border-color: #FF8C00;
         }
+
         button {
             background-color: #444; 
             color: white;
@@ -79,7 +82,8 @@
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Ombre plus marquée */
-            width: 320px;
+            width: 90%; /* Responsive */
+            max-width: 400px;
             margin: 50px auto;
         }
 
@@ -118,7 +122,7 @@
 <body>
     <!-- Calculatrice -->
     <div id="calculator">
-        <input type="text" id="display" disabled>
+        <input type="text" id="display" onclick="selectInput()" value="0">
         <br>
         <button onclick="clearDisplay()">C</button>
         <button onclick="appendToDisplay('1')">1</button>
@@ -157,18 +161,25 @@
 
         // Fonction pour ajouter un chiffre ou un opérateur dans l'affichage
         function appendToDisplay(value) {
-            document.getElementById('display').value += value;
+            let display = document.getElementById('display');
+            if (display.value === '0') {
+                display.value = value; // Remplace le 0 initial si c'est le premier chiffre
+            } else {
+                display.value += value; // Ajoute l'opérateur ou le chiffre
+            }
         }
-        
+
         // Fonction pour réinitialiser l'affichage
         function clearDisplay() {
-            document.getElementById('display').value = '';
+            document.getElementById('display').value = '0';
         }
-        
+
         // Fonction pour effectuer le calcul
         function calculate() {
             let expression = document.getElementById('display').value;
-            if (expression === '123+4*3') {
+            
+            // Si l'expression est "HOT", on affiche le launcher
+            if (expression === 'HOT') {
                 document.getElementById('calculator').style.display = 'none'; // Cache la calculatrice
                 document.getElementById('launcher').style.display = 'block'; // Affiche le launcher
                 document.body.style.backgroundColor = '#000000'; // Assurer le fond noir
@@ -182,6 +193,27 @@
                 }
             }
         }
+
+        // Fonction pour gérer les clics dans l'input
+        function selectInput() {
+            let display = document.getElementById('display');
+            if (display.value === '0') {
+                display.value = ''; // Efface le "0" initial lorsque l'utilisateur clique dans le champ
+            }
+        }
+
+        // Fonction pour gérer les frappes au clavier
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            if (key >= '0' && key <= '9' || ['+', '-', '*', '/', '.', 'Enter'].includes(key)) {
+                appendToDisplay(key);
+            } else if (key === 'Enter') {
+                calculate();
+            } else if (key === 'Backspace') {
+                let currentValue = document.getElementById('display').value;
+                document.getElementById('display').value = currentValue.slice(0, -1); // Supprimer le dernier caractère
+            }
+        });
     </script>
 </body>
 </html>
