@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: black; /* Fond noir */
+            background-color: black;
             color: white;
             text-align: center;
             margin: 0;
@@ -24,13 +24,13 @@
             background: #222;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             margin: 50px auto;
-            width: 90%; /* Responsive pour les écrans mobiles */
-            max-width: 400px; /* Limite la largeur */
+            width: 90%;
+            max-width: 400px;
         }
 
         input {
             width: 100%;
-            font-size: 30px; /* Plus grand pour une meilleure lisibilité sur mobile */
+            font-size: 30px;
             text-align: right;
             margin-bottom: 20px;
             background: #333;
@@ -38,8 +38,8 @@
             border: 2px solid #555;
             border-radius: 20px;
             outline: none;
-            height: 60px; /* Plus grand pour l'usage tactile */
-            cursor: text; /* Permet à l'utilisateur de savoir qu'il peut taper */
+            height: 60px;
+            cursor: text;
         }
 
         input:focus {
@@ -47,7 +47,7 @@
         }
 
         button {
-            background-color: #444; 
+            background-color: #444;
             color: white;
             padding: 20px;
             font-size: 18px;
@@ -58,43 +58,42 @@
             width: 60px;
             height: 60px;
             display: inline-flex;
-            justify-content: center; /* Centre horizontalement */
-            align-items: center; /* Centre verticalement */
+            justify-content: center;
+            align-items: center;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre légère */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         button:hover {
-            background-color: #FF8C00; /* Orange vif au survol */
-            transform: translateY(-2px); /* Légère élévation */
+            background-color: #FF8C00;
+            transform: translateY(-2px);
         }
 
         button:active {
-            background-color: #e67e00; /* Orange foncé lors du clic */
-            transform: translateY(0); /* Retour à l'état initial lors du clic */
+            background-color: #e67e00;
+            transform: translateY(0);
         }
 
-        /* Amélioration du Launcher */
         .launcher {
-            display: none; /* Caché par défaut */
+            display: none;
             margin-top: 50px;
-            background-color: #111; /* Fond plus doux pour le launcher */
+            background-color: #111;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Ombre plus marquée */
-            width: 90%; /* Responsive */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            width: 90%;
             max-width: 400px;
             margin: 50px auto;
         }
 
         .launcher h1 {
-            color: #FF8C00; /* Titre de couleur orange */
+            color: #FF8C00;
             font-size: 30px;
             margin-bottom: 20px;
         }
 
         .launcher button {
-            background-color: #444; /* Fond gris foncé */
+            background-color: #444;
             color: white;
             padding: 15px 30px;
             font-size: 18px;
@@ -104,17 +103,17 @@
             border: none;
             width: 80%;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3); /* Ombre légère */
+            box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
         }
 
         .launcher button:hover {
-            background-color: #FF8C00; /* Orange vif au survol */
-            transform: translateY(-2px); /* Légère élévation */
+            background-color: #FF8C00;
+            transform: translateY(-2px);
         }
 
         .launcher button:active {
-            background-color: #e67e00; /* Orange foncé lors du clic */
-            transform: translateY(0); /* Retour à l'état initial lors du clic */
+            background-color: #e67e00;
+            transform: translateY(0);
         }
 
     </style>
@@ -151,6 +150,8 @@
         <button onclick="launchApp('https://www.pornhub.com')">Pornhub</button>
         <button onclick="launchApp('discord://open')">Ouvrir Discord</button>
         <button onclick="launchApp('https://Hentaivost.fr/hp/hentai-video/vostfr/')">Hentai</button>
+        <!-- ✅ Bouton GTA V ajouté -->
+        <button onclick="launchApp('open://gta_v')">Ouvrir GTA V</button>
     </div>
 
     <script>
@@ -163,9 +164,9 @@
         function appendToDisplay(value) {
             let display = document.getElementById('display');
             if (display.value === '0') {
-                display.value = value; // Remplace le 0 initial si c'est le premier chiffre
+                display.value = value;
             } else {
-                display.value += value; // Ajoute l'opérateur ou le chiffre
+                display.value += value;
             }
         }
 
@@ -174,21 +175,18 @@
             document.getElementById('display').value = '0';
         }
 
-        // Fonction pour effectuer le calcul
+        // Fonction pour effectuer le calcul ou ouvrir le launcher
         function calculate() {
             let expression = document.getElementById('display').value;
-            
-            // Si l'expression est "HOT", on affiche le launcher
+
             if (expression === 'HOT') {
-                document.getElementById('calculator').style.display = 'none'; // Cache la calculatrice
-                document.getElementById('launcher').style.display = 'block'; // Affiche le launcher
-                document.body.style.backgroundColor = '#000000'; // Assurer le fond noir
+                document.getElementById('calculator').style.display = 'none';
+                document.getElementById('launcher').style.display = 'block';
+                document.body.style.backgroundColor = '#000000';
             } else {
                 try {
-                    // Calculer l'expression
                     document.getElementById('display').value = eval(expression);
                 } catch {
-                    // Si erreur dans l'expression, afficher "Erreur"
                     document.getElementById('display').value = 'Erreur';
                 }
             }
@@ -198,7 +196,7 @@
         function selectInput() {
             let display = document.getElementById('display');
             if (display.value === '0') {
-                display.value = ''; // Efface le "0" initial lorsque l'utilisateur clique dans le champ
+                display.value = '';
             }
         }
 
@@ -211,7 +209,7 @@
                 calculate();
             } else if (key === 'Backspace') {
                 let currentValue = document.getElementById('display').value;
-                document.getElementById('display').value = currentValue.slice(0, -1); // Supprimer le dernier caractère
+                document.getElementById('display').value = currentValue.slice(0, -1);
             }
         });
     </script>
